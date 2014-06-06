@@ -1,0 +1,140 @@
+<idea-plugin version="2">
+  <id>com.smartbear.soapui.idea.plugin</id>
+  <name>SoapUI IntelliJ Plugin</name>
+  <version>5.0-beta1</version>
+
+  <description><![CDATA[
+      Adds latest 5.0 features - still in beta - let us know if you have any issues!
+    ]]></description>
+
+  <change-notes><![CDATA[
+      Updated to lates IDEA Plugin APIs and SoapUI 5.0 libraries
+    ]]>
+  </change-notes>
+
+  <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
+  <idea-version since-build="131"/>
+
+  <!-- please see http://confluence.jetbrains.com/display/IDEADEV/Plugin+Compatibility+with+IntelliJ+Platform+Products
+       on how to target different products -->
+  <!-- uncomment to enable plugin in all products
+  <depends>com.intellij.modules.lang</depends>
+  -->
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+  </extensions>
+
+  <application-components>
+    <!-- Add your application components here -->
+      <component>
+          <implementation-class>com.eviware.soapui.intellij.plugin.SoapUIEditorProvider</implementation-class>
+      </component>
+  </application-components>
+
+  <project-components>
+    <!-- Add your project components here -->
+      <component>
+          <implementation-class>com.eviware.soapui.intellij.plugin.SoapUIPlugin</implementation-class>
+          <interface-class>com.eviware.soapui.intellij.plugin.SoapUIPlugin</interface-class>
+      </component>
+  </project-components>
+
+  <actions>
+    <!-- Add your actions here -->
+      <group text="SoapUI" popup="true" id="SoapUIGroup"
+             class="com.eviware.soapui.intellij.plugin.actions.SoapUIGroup">
+          <action id="ShowHideSoapUI"
+                  class="com.eviware.soapui.intellij.plugin.actions.ShowHideSoapUI" text="ShowHideSoapUI"/>
+          <separator/>
+          <action id="SoapUIPreferences" class="com.eviware.soapui.intellij.plugin.actions.PreferencesAction"
+                  text="Preferences"
+                  description="soapUI Preferences"/>
+          <separator/>
+
+
+          <action id="SoapUITcpMon" class="com.eviware.soapui.intellij.plugin.actions.TcpMonAction"
+                  text="Launch TcpMon"
+                  description="Launches TcpMon"/>
+
+          <separator/>
+
+          <action id="SoapUIOnlineHelp" class="com.eviware.soapui.intellij.plugin.actions.OnlineHelpAction"
+                  text="Online Help"
+                  description="Launches Online Help in browser"/>
+
+          <action id="SoapUIOrgHelp" class="com.eviware.soapui.intellij.plugin.actions.SoapUIOrgAction"
+                  text="soapui.org"
+                  description="Launches soapui.org in browser"/>
+
+          <separator/>
+
+          <action id="SoapUISystemProperties"
+                  class="com.eviware.soapui.intellij.plugin.actions.SystemPropertiesAction"
+                  text="System Properties"
+                  description="Shows System Properties"/>
+
+          <action id="SoapUIAbout" class="com.eviware.soapui.intellij.plugin.actions.AboutSoapUIAction"
+                  text="About SoapUI"
+                  description="Shows information about the soapUI Plugin"/>
+
+          <add-to-group group-id="ToolsMenu" anchor="last"/>
+      </group>
+
+      <group text="Generate" popup="true" id="SoapUIGenerateGroup">
+          <action id="SoapUIJBossWS" class="com.eviware.soapui.intellij.plugin.actions.JBossWSAction"
+                  text="JBossWS Artifacts"
+                  description="Generate JBossWS Artifacts with wstools"/>
+
+          <action id="SoapUIJBossWSImport" class="com.eviware.soapui.intellij.plugin.actions.JBossWSJAXWSAction"
+                  text="JBossWS Artifacts"
+                  description="Generate JBossWS JAX-WS Artifacts with wsimport"/>
+
+          <separator/>
+
+          <action id="SoapUIJAXRPC" class="com.eviware.soapui.intellij.plugin.actions.JAXRPCAction"
+                  text="JAX-RPC Artifacts"
+                  description="Generate JAX-RPC Artifacts with wscompile"/>
+
+          <action id="SoapUIJAXWS" class="com.eviware.soapui.intellij.plugin.actions.JAXWSAction"
+                  text="JAX-WS Artifacts"
+                  description="Generate JAX-WS Artifacts with wsimport"/>
+
+          <separator/>
+
+          <action id="SoapUIAxis1" class="com.eviware.soapui.intellij.plugin.actions.Axis1Action"
+                  text="Axis 1.X Artifacts"
+                  description="Generate Axis 1.X Artifacts with wsdl2java"/>
+
+          <action id="SoapUIAxis2" class="com.eviware.soapui.intellij.plugin.actions.Axis2Action"
+                  text="Axis 2.X Artifacts"
+                  description="Generate Axis 2.X Artifacts with wsdl2java"/>
+
+          <action id="SoapUICXF" class="com.eviware.soapui.intellij.plugin.actions.CXFAction"
+                  text="CXF 2.X Artifacts"
+                  description="Generate Apache CXF 2.X Artifacts with wsdl2java"/>
+
+          <action id="SoapUIXFire" class="com.eviware.soapui.intellij.plugin.actions.XFireAction"
+                  text="XFire 1.X Artifacts"
+                  description="Generate XFire 1.X Artifacts with wsgen"/>
+
+          <action id="SoapUIOracleProxy" class="com.eviware.soapui.intellij.plugin.actions.OracleWsaAction"
+                  text="Oracle Proxy Artifacts"
+                  description="Generate Oracle Proxy Artifacts with wsa.jar"/>
+
+          <separator/>
+
+          <action id="SoapUIXmlBeans" class="com.eviware.soapui.intellij.plugin.actions.XmlBeansAction"
+                  text="XmlBeans Classes"
+                  description="Generate XmlBeans 2.X classes with scomp"/>
+
+          <action id="SoapUIJAXB" class="com.eviware.soapui.intellij.plugin.actions.JAXBAction"
+                  text="JAXB 2.0 Classes"
+                  description="Generate JAXB 2.0 classes with xjc"/>
+
+          <add-to-group group-id="SoapUIGroup" anchor="before" relative-to-action="SoapUITcpMon"/>
+      </group>
+
+  </actions>
+
+</idea-plugin>
